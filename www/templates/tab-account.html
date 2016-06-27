@@ -1,0 +1,120 @@
+<ion-view view-title="weather">
+  <ion-content>
+
+<div class="list">
+
+  <div class="item item-input-inset" style="box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);">
+    <label class="item-input-wrapper">
+      <input type="text" placeholder="city Name" ng-model="cityName">
+    </label>
+    <button class="button button-small button-royal" ng-click="weatherCity(cityName)">
+      Submit
+    </button>
+  </div>
+</div>
+     
+       <div class="row" style="background:#fff;padding:0px">
+<div class="col col-25" style="padding-top:8%; text-align:right">
+<span ng-if="weatherreport[0].weather[0].description=='broken clouds'">
+              <img src="img/cl1.png" height="30">
+            </span>
+            <span ng-if="weatherreport[0].weather[0].description=='moderate rain'">
+              <img src="img/cloud.png" height="30">
+            </span>
+            <span ng-if="weatherreport[0].weather[0].description=='light rain'">
+              <img src="img/light.png" height="30">
+            </span>
+            <span ng-if="weatherreport[0].weather[0].description!='light rain' && weatherreport[0].weather[0].description!='moderate rain' && weatherreport[0].weather[0].description!='broken clouds'">
+              <img src="img/sun.png" height="30">
+            </span>
+
+    </div>
+<div class="col" style="padding:0px;font-size:15px">
+<div class="row">
+<div class="col"> {{date | date:'dd-MM-yy'}}</div>
+</div>
+<div class="row">
+<div class="col">
+{{weatherreport[0].weather[0].description}}
+</div>
+</div>
+</div>
+     </div>
+  <div class="row" style="padding-top: 12px;font-size: 16px;color: crimson;font-weight: 700;">
+    <p>Details</p>
+    </div>
+  <div class="row">
+  <div class="col col-75">
+  <span class="detailText"> min temp</span>
+    </div>
+    <div class="col">
+     <span>{{weatherreport[0].temp.min | number:0}}</span>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col col-75">
+  <span class="detailText"> max temp</span> 
+  </div>
+  <div class="col"> 
+   <span>{{weatherreport[0].temp.max | number:0}}</span>
+  </div>
+  </div>
+    <div class="row">
+    <div class="col col-75">
+  <span class="detailText"> temp in monning </span>
+  </div>
+  <div class="col">
+     <span>{{weatherreport[0].temp.morn | number:0}}</span>
+     </div>
+  </div>
+  <div class="row">
+  <div class="col col-75">
+  <span class="detailText"> temp in day</span> 
+  </div>
+    <span>{{weatherreport[0].temp.day | number:0}}</span>
+  </div>
+  <div class="row">
+  <div class="col col-75">
+  <span class="detailText"> temp in evening</span>  
+  </div>
+  <div class="col">
+   <span>{{weatherreport[0].temp.eve | number:0}}</span>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col col-75">
+  <span class="detailText"> temp in night</span> 
+  </div> 
+  <div class="col">
+   <span>{{weatherreport[0].temp.night | number:0}}</span>
+  </div>
+  </div>
+
+<div class="row">
+<div class="col col-75">
+  <span class="detailText"> clouds</span> 
+  </div>
+  <div class="col"> 
+   <span>{{weatherreport[0].clouds}}</span>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="col col-75">
+  <span class="detailText"> humidity</span> </div>
+  <div class="col">  <span>{{weatherreport[0].humidity}}</span>
+  </div></div>
+
+
+  <div class="row">
+  <div class="col col-75">
+  <span class="detailText"> speed</span> </div>
+  <div class="col">  <span>{{weatherreport[0].speed}}</span>
+  </div></div>
+    
+</div>
+
+</div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,161 @@
+<ion-view view-title="weather">
+  <ion-content>
+
+<div class="list">
+
+  <div class="item item-input-inset" style="box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);">
+    <label class="item-input-wrapper">
+      <input type="text" placeholder="city Name" ng-model="cityName">
+    </label>
+    <button class="button button-small button-royal" ng-click="weatherCity(cityName)">
+      Submit
+    </button>
+  </div>
+<div>
+	<ul class="list">
+    <li class="item" ng-repeat="report in weatherreport" ng-click="showDetails($index)" style="box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);padding: 2px 10px;margin-top: 10px;">
+      <div class="row" style="font-size:13px">
+      	<div class="col">
+      		<span>{{days[dates[$index].getDay()]}} {{dates[$index].getDate()}}
+			</span>
+      		</div>
+      		<div class="col">
+      			<span ng-if="report.weather[0].description=='broken clouds'">
+      				<img src="img/cl1.png" height="30">
+      			</span>
+      			<span ng-if="report.weather[0].description=='moderate rain'">
+      				<img src="img/cloud.png" height="30">
+      			</span>
+      			<span ng-if="report.weather[0].description=='light rain'">
+      				<img src="img/light.png" height="30">
+      			</span>
+      			<span ng-if="report.weather[0].description!='light rain' && report.weather[0].description!='moderate rain' && report.weather[0].description!='broken clouds'">
+      				<img src="img/sun.png" height="30">
+      			</span>
+      		</div>
+      	<div class="col"><span>{{report.weather[0].description}}</span></div>
+      	<div class="col" style="text-align: right"><span>{{report.temp.max | number:0}}  &deg;</span></div>
+      </row>
+       
+    </li>
+</ul>
+</div>
+
+</div>
+
+  </ion-content>
+</ion-view>
+<script id="details.html" type="text/ng-template">
+     <div class="row" style="background:#fff;padding:0px">
+<div class="col col-25" style="padding-top:8%; text-align:right">
+<span ng-if="weatherreport[daily].weather[0].description=='broken clouds'">
+      				<img src="img/cl1.png" height="30">
+      			</span>
+      			<span ng-if="weatherreport[daily].weather[0].description=='moderate rain'">
+      				<img src="img/cloud.png" height="30">
+      			</span>
+      			<span ng-if="weatherreport[daily].weather[0].description=='light rain'">
+      				<img src="img/light.png" height="30">
+      			</span>
+      			<span ng-if="weatherreport[daily].weather[0].description!='light rain' && weatherreport[daily].weather[0].description!='moderate rain' && weatherreport[daily].weather[0].description!='broken clouds'">
+      				<img src="img/sun.png" height="30">
+      			</span>
+
+		</div>
+<div class="col" style="padding:0px;font-size:15px">
+<div class="row">
+<div class="col"> {{days[dates[daily].getDay()]}} {{dates[daily].getDate()}}</div>
+</div>
+<div class="row">
+<div class="col">
+{{weatherreport[daily].weather[0].description}}
+</div>
+</div>
+</div>
+     </div>
+	<div class="row" style="padding-top: 12px;font-size: 16px;color: crimson;font-weight: 700;">
+		<p>Details</p>
+		</div>
+	<div class="row">
+	<div class="col col-75">
+	<span class="detailText"> min temp</span>
+		</div>
+		<div class="col">
+	   <span>{{weatherreport[daily].temp.min | number:0}}</span>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col col-75">
+	<span class="detailText"> max temp</span> 
+	</div>
+	<div class="col"> 
+	 <span>{{weatherreport[daily].temp.max | number:0}}</span>
+	</div>
+	</div>
+		<div class="row">
+		<div class="col col-75">
+	<span class="detailText"> temp in monning </span>
+	</div>
+	<div class="col">
+	   <span>{{weatherreport[daily].temp.morn | number:0}}</span>
+	   </div>
+	</div>
+	<div class="row">
+	<div class="col col-75">
+	<span class="detailText"> temp in day</span> 
+	</div>
+	  <span>{{weatherreport[daily].temp.day | number:0}}</span>
+	</div>
+	<div class="row">
+	<div class="col col-75">
+	<span class="detailText"> temp in evening</span>  
+	</div>
+	<div class="col">
+	 <span>{{weatherreport[daily].temp.eve | number:0}}</span>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col col-75">
+	<span class="detailText"> temp in night</span> 
+	</div> 
+	<div class="col">
+	 <span>{{weatherreport[daily].temp.night | number:0}}</span>
+	</div>
+	</div>
+
+<div class="row">
+<div class="col col-75">
+	<span class="detailText"> clouds</span> 
+	</div>
+	<div class="col"> 
+	 <span>{{weatherreport[daily].clouds}}</span>
+	</div>
+	</div>
+
+	<div class="row">
+	<div class="col col-75">
+	<span class="detailText"> humidity</span> </div>
+	<div class="col">  <span>{{weatherreport[daily].humidity}}</span>
+	</div></div>
+
+
+	<div class="row">
+	<div class="col col-75">
+	<span class="detailText"> speed</span> </div>
+	<div class="col">  <span>{{weatherreport[daily].speed}}</span>
+	</div></div>
+	<a class="button icon-left ion-chevron-left button-clear button-dark" style="position: absolute;z-index: 2;top: 0;left: 0;color: #fff;" ng-click="closePopUp()">Back</a>
+    </script>
+    <style>
+    .popup-head,.popup-title{
+    	background: #1c776b;
+    	color: #fff !important;
+    }
+    .detailText{
+		font-size: 15px;
+		font-weight: bold;
+    }
+    .popup-container .popup{
+    	width: 280px;
+    }
+    </style>
